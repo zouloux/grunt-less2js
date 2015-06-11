@@ -38,7 +38,7 @@ module.exports = function (grunt) {
           var prefix = options.ignoreWithPrefix || null;
 
           ruleset.rules.forEach(function (rule) {
-            if (rule.variable) {
+            if (rule.variable && rule.name && rule.value) {
               var name = rule.name.substr(1); // remove "@"
 
               if (!prefix || name.substr(0, prefix.length) !== prefix) {
