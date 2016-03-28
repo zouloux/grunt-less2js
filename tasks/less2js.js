@@ -43,7 +43,8 @@ module.exports = function (grunt) {
 
               if (!prefix || name.substr(0, prefix.length) !== prefix) {
                 var value = rule.value.value[0]; // can be less.tree.Color, less.tree.Expression, etc.
-                lessVars[name] = value.toCSS();
+                if (value.toCSS)
+                  lessVars[name] = value.toCSS();
               }
             }
           });
