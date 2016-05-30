@@ -54,10 +54,11 @@ module.exports = function (grunt) {
           var ruleset = tree.eval(env); // jshint ignore:line
 
           ruleset.rules.forEach(function (rule) {
-            if (rule.variable) {
+            if (rule.variable && rule.name && rule.value) {
               var name = rule.name.substr(1); // remove "@"
               var value = rule.value.value[0]; // can be less.tree.Color, less.tree.Expression, etc.
-              lessVars[name] = value.toCSS();
+              if (value.toCSS)
+                lessVars[name] = value.toCSS();
             }
           });
         });
